@@ -6,9 +6,8 @@ import { Toolbar, Drawer, Typography, AppBar, List, ListItem, ListItemText, List
 
 import {Home, Menu, RoomService, Business, AttachMoney,Settings,Face, LockOpen, ContactSupport } from '@material-ui/icons';
 
-import AdminDash from "../admin-dash/AdminDash";
 import  LandingPage from "../landing-page/LandingPage";
-
+import Login from '../login/Login'
 import {
   Switch,
   Route,
@@ -16,16 +15,21 @@ import {
 
 
 import {
-  Link
+  Link,
+  NavLink
 } from "react-router-dom";
-import Footer from '../footer/Footer';
-
+import Copyright from "../copyright/Copyright";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+  },
+
+  active: {
+    color: theme.palette.secondary.main,
+    textDecoration: 'none'
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -81,8 +85,8 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
-    height: '100vh'
+    padding: theme.spacing(2),
+    minHeight: 100
   },
 }));
 
@@ -100,9 +104,6 @@ export default function Header() {
   };
 
   return (
-    
-
-   
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
@@ -149,12 +150,12 @@ export default function Header() {
         <Divider />
          <List>
        
-          <Link to='/'>
+          <NavLink to='/' activeClassName={classes.active}>
           <ListItem button key='1'>
-            <ListItemIcon className={classes.navIcon}> <Home /></ListItemIcon>
+            <ListItemIcon color='inherit' className={classes.navIcon}> <Home /></ListItemIcon>
             <ListItemText primary='Home' />
           </ListItem>
-          </Link>
+          </NavLink>
          
           <ListItem button key='2'>
             <ListItemIcon className={classes.navIcon}> <RoomService /></ListItemIcon>
@@ -186,7 +187,7 @@ export default function Header() {
         <Divider />
        <List>
 
-       <Link to='/admin'>
+       <Link to='/login' activeClassName={classes.active}>
        <ListItem button key='6'>
             <ListItemIcon className={classes.navIcon}> <LockOpen /></ListItemIcon>
             <ListItemText primary='Login' />
@@ -202,12 +203,12 @@ export default function Header() {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Switch>
+        <Route path='/login' component={Login}/>
         <Route path='/' exact component={LandingPage}/>
-        <Route path='/admin' component={AdminDash}/>
+
       </Switch>
-        
+      <Copyright /> 
       </main>
-      {/* <Footer /> */}
     </div>
    
   );

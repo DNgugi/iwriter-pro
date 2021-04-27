@@ -4,7 +4,8 @@ import {
  
 } from "react-router-dom";
 
-import Header from "./features/header/Header"
+import Header from "./features/header/Header";
+import Copyright from './features/copyright/Copyright';
 
 
 const App = () => {
