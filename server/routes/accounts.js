@@ -3,7 +3,7 @@ import { pool } from "../iwriterprodb.js";
 
 const router = express.Router();
 
-//USERS TABLE ROUTES
+//ACCOUNTS TABLE ROUTES
 //Create
 router.post("/", async (req, res) => {
   try {

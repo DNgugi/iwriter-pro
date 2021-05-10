@@ -1,19 +1,15 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
- 
-} from "react-router-dom";
 
 import Header from "./features/header/Header";
-import Copyright from './features/copyright/Copyright';
-
-
+import Footer from "./features/footer/Footer";
+import "./app.css";
 const App = () => {
   return (
-  <Router>
-    <Header />
-  </Router>
+    <>
+      <Header />
+      <Footer />
+    </>
   );
-}
+};
 
 export default App;
