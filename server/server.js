@@ -1,7 +1,7 @@
-import express from 'express';
-import cors from 'cors';
-import usersRouter from './routes/users.js';
-
+import express from "express";
+import cors from "cors";
+import usersRouter from "./routes/users.js";
+import rolesRouter from "./routes/roles.js";
 
 const app = express();
 
@@ -13,17 +13,17 @@ app.use(express.json());
 
 //ROUTES
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   try {
-    res.json('iWriterPro API homepage');
+    res.json("iWriterPro API homepage");
   } catch (error) {
     console.error(error.message);
   }
 });
 
-app.use('/users', usersRouter);
+app.use("/users", usersRouter);
+app.use("/roles", rolesRouter);
 
-
-
-
-app.listen(PORT, ()=>console.log(`Server listening on: http://localhost:${PORT}`));
+app.listen(PORT, () =>
+  console.log(`Server listening on: http://localhost:${PORT}`)
+);

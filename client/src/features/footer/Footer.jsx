@@ -1,9 +1,10 @@
-import React from 'react';
+import React from "react";
+import Copyright from "../copyright/Copyright";
 
 const Footer = () => {
   return (
-    <div>
-     <p>Copyright © Your Website 2021.</p>
+    <div id="footer">
+      <Copyright />
     </div>
   );
 };

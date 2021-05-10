@@ -1,97 +1,52 @@
-import React from 'react';
-import clsx from 'clsx';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { Toolbar, Drawer, Typography, AppBar, List, ListItem, ListItemText, ListItemIcon, useTheme, makeStyles, CssBaseline, Divider, IconButton} from '@material-ui/core';
-
-import {Home, Menu, RoomService, Business, AttachMoney,Settings,Face, LockOpen, ContactSupport } from '@material-ui/icons';
-
-import  LandingPage from "../landing-page/LandingPage";
-import Login from '../login/Login'
+import React from "react";
+import clsx from "clsx";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import {
-  Switch,
-  Route,
-} from "react-router-dom";
-
+  Toolbar,
+  Drawer,
+  Typography,
+  AppBar,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+  useTheme,
+  Divider,
+  IconButton,
+} from "@material-ui/core";
 
 import {
-  Link,
-  NavLink
-} from "react-router-dom";
+  Menu,
+  AttachMoney,
+  //Face,
+  LockOpen,
+  ContactSupport,
+  DoneAll,
+  SwapVert,
+  Info,
+  BorderColor,
+  HomeRounded,
+} from "@material-ui/icons";
+
+import { Link, NavLink, useRouteMatch } from "react-router-dom";
+
+import headerStyles from "./headerStyles";
 import Copyright from "../copyright/Copyright";
-
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-
-  active: {
-    color: theme.palette.secondary.main,
-    textDecoration: 'none'
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: 36,
-  },
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-  },
-  drawerOpen: {
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerClose: {
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    overflowX: 'hidden',
-    width: theme.spacing(7) + 1,
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9) + 1,
-    },
-  },
-  toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(2),
-    minHeight: 100
-  },
-}));
+import Login from "../login/Login";
+import { Switch, Route } from "react-router-dom";
+import Hero from "../hero/Hero";
+import Services from "../services/Services";
+import About from "../about/About";
+import Process from "../process/Process";
+import Pricing from "../pricing/Pricing";
+import Contact from "../contact/Contact";
+import AdminDash from "../admin-dash/AdminDash";
+import { NavHashLink } from "react-router-hash-link";
+import Home from "../home/Home";
 
 export default function Header() {
-  const classes = useStyles();
+  const classes = headerStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -103,9 +58,10 @@ export default function Header() {
     setOpen(false);
   };
 
+  const { url, path } = useRouteMatch();
+
   return (
-    <div className={classes.root}>
-      <CssBaseline />
+    <div className={classes.root} id="header">
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
@@ -144,72 +100,86 @@ export default function Header() {
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === "rtl" ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
           </IconButton>
         </div>
         <Divider />
-         <List>
-       
-          <NavLink to='/' activeClassName={classes.active}>
-          <ListItem button key='1'>
-            <ListItemIcon color='inherit' className={classes.navIcon}> <Home /></ListItemIcon>
-            <ListItemText primary='Home' />
-          </ListItem>
-          </NavLink>
-         
-          <ListItem button key='2'>
-            <ListItemIcon className={classes.navIcon}> <RoomService /></ListItemIcon>
-            <ListItemText primary='Services' />
-          </ListItem>
-          
-          <ListItem button key='3'>
-            <ListItemIcon className={classes.navIcon}> <Business /></ListItemIcon>
-            <ListItemText primary='About' />
-          </ListItem>
-         
-          <ListItem button key='4'>
-            <ListItemIcon className={classes.navIcon}> <AttachMoney /></ListItemIcon>
-            <ListItemText primary='Pricing' />
-          </ListItem>
-       
-          <ListItem button key='5'>
-            <ListItemIcon className={classes.navIcon}> <Settings /></ListItemIcon>
-            <ListItemText primary='Process' />
-          </ListItem>
-       
-          <ListItem button key='6'>
-            <ListItemIcon className={classes.navIcon}> <Face /></ListItemIcon>
-            <ListItemText primary='Testimonials' />
-          </ListItem>
-      
-
-      </List>
+        <List>
+          <NavHashLink smooth to={"/#hero"}>
+            <ListItem>
+              <ListItemIcon>
+                <HomeRounded />
+              </ListItemIcon>
+              <ListItemText>Home</ListItemText>
+            </ListItem>
+          </NavHashLink>
+          <NavHashLink smooth to={"/#services"}>
+            <ListItem>
+              <ListItemIcon>
+                {" "}
+                <DoneAll />
+              </ListItemIcon>
+              <ListItemText>Services</ListItemText>
+            </ListItem>
+          </NavHashLink>
+          <NavHashLink smooth to={"/#about"}>
+            <ListItem>
+              <ListItemIcon>
+                {" "}
+                <Info />
+              </ListItemIcon>
+              <ListItemText>About</ListItemText>
+            </ListItem>
+          </NavHashLink>
+          <NavHashLink smooth to={"/#process"}>
+            <ListItem>
+              <ListItemIcon>
+                {" "}
+                <SwapVert />
+              </ListItemIcon>
+              <ListItemText>Process</ListItemText>
+            </ListItem>
+          </NavHashLink>
+          <NavHashLink smooth to={"/#pricing"}>
+            <ListItem>
+              <ListItemIcon>
+                {" "}
+                <AttachMoney />
+              </ListItemIcon>
+              <ListItemText>Pricing</ListItemText>
+            </ListItem>
+          </NavHashLink>
+        </List>
         <Divider />
-       <List>
-
-       <Link to='/login' activeClassName={classes.active}>
-       <ListItem button key='6'>
-            <ListItemIcon className={classes.navIcon}> <LockOpen /></ListItemIcon>
-            <ListItemText primary='Login' />
-          </ListItem>
-       </Link>
-
-          <ListItem button key='6'>
-            <ListItemIcon className={classes.navIcon}> <ContactSupport /></ListItemIcon>
-            <ListItemText primary='Contact Support' />
-          </ListItem>
-    </List>
+        <List>
+          <NavLink to="/contact">
+            <ListItem>
+              <ListItemIcon>
+                <ContactSupport />
+              </ListItemIcon>
+              <ListItemText>Contact Us</ListItemText>
+            </ListItem>
+          </NavLink>
+          <NavLink to="/login">
+            <ListItem>
+              <ListItemIcon>
+                <LockOpen />
+              </ListItemIcon>
+              <ListItemText>Login</ListItemText>
+            </ListItem>
+          </NavLink>
+        </List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Switch>
-        <Route path='/login' component={Login}/>
-        <Route path='/' exact component={LandingPage}/>
-
-      </Switch>
-      <Copyright /> 
+        <Route exact path="/" component={Home} />
+        <Route path="/login" component={Login} />
+        <Route path="/contact" component={Contact} />
       </main>
     </div>
-   
   );
 }
