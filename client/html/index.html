@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="sass/base.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;500;700;900&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Raleway:wght@100;400;500;700;900&display=swap">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <title>iWriter Pro | Affordable Professional Writing</title>
+</head>
+<body>
+  <header>
+    <h1>iWriter Pro</h1>
+    <span class="material-icons" onclick="toggleHidden()">
+      menu
+    </span>
+    <!-- <button class='btn' onclick="toggleHidden()">Toggle Nav</button> -->
+  </header>
+  <nav id='main-nav' class="hidden">
+    <a href="#welcome" onclick="toggleHidden()" class="nav-item">Welcome</a>
+    <a href="#services" onclick="toggleHidden()" class="nav-item">Services</a>
+    <a href="#support"  onclick="toggleHidden()" class="nav-item">Support</a>
+  </nav>
+  <main>
+    <div id="welcome">
+      <h2>Homework?</h2>
+      <h3>Get it done quick!</h3>
+      <button class="btn">Get Started</button>
+    </div>
+    <div id="services">
+      <div class="card">
+        <h3 class="card-title">Writing</h3>
+        <p class="card-body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure harum similique corporis?</p>
+        <button>learn more</button>
+      </div>
+      <div class="card">
+        <h3 class="card-title">Research</h3>
+        <p class="card-body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure harum similique corporis?</p>
+        <button>learn more</button>
+      </div>
+      <div class="card">
+        <h3 class="card-title">Translation</h3>
+        <p class="card-body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure harum similique corporis?</p>
+        <button>learn more</button>
+      </div>
+      <div class="card">
+        <h3 class="card-title">Proof Reading</h3>
+        <p class="card-body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure harum similique corporis?</p>
+        <button>learn more</button>
+      </div>
+    </div>
+    <div id="support">
+      <h3>Need help?</h3>
+      <div class="contacts">
+        <p>Phone: 0712 345 678</p>
+        <p>WhatsApp: 0712 345 678</p>
+        <p>Email: help@iwriterpro.com</p>
+      </div>
+      <div class="support-form">
+        <form action="#">
+    
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/base.js"></script>
+</body>
+</html>
