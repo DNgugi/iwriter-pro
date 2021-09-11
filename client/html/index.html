@@ -11,61 +11,81 @@
   
   <title>iWriter Pro | Affordable Professional Writing</title>
 </head>
-<body>
+<body >
   <header>
     <h1>iWriter Pro</h1>
     <span class="material-icons" onclick="toggleHidden()">
       menu
     </span>
-    <!-- <button class='btn' onclick="toggleHidden()">Toggle Nav</button> -->
   </header>
   <nav id='main-nav' class="hidden">
     <a href="#welcome" onclick="toggleHidden()" class="nav-item">Welcome</a>
     <a href="#services" onclick="toggleHidden()" class="nav-item">Services</a>
     <a href="#support"  onclick="toggleHidden()" class="nav-item">Support</a>
   </nav>
-  <main>
+  <main class="container">
     <div id="welcome">
-      <h2>Homework?</h2>
-      <h3>Get it done quick!</h3>
-      <button class="btn">Get Started</button>
+      <h2>Need a pro writer?</h2>
+      <h4>Get your project started right now!</h4>
+      <a href="https://wa.me/254795285575" target="_blank">
+      <button class="btn"><span class="material-icons">
+        whatsapp
+      </span> <span>WhatsApp Us</span></button>
+      </a>    
     </div>
     <div id="services">
-      <div class="card">
+      <h2 class="title center">Our Services</h2>
+      <div class="card one">
         <h3 class="card-title">Writing</h3>
         <p class="card-body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure harum similique corporis?</p>
-        <button>learn more</button>
+      <button class="btn">Learn More</button>
       </div>
-      <div class="card">
+      <div class="card two">
         <h3 class="card-title">Research</h3>
         <p class="card-body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure harum similique corporis?</p>
-        <button>learn more</button>
+      <button class="btn">Learn More</button>
       </div>
-      <div class="card">
-        <h3 class="card-title">Translation</h3>
-        <p class="card-body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure harum similique corporis?</p>
-        <button>learn more</button>
-      </div>
-      <div class="card">
+    
+      <div class="card three">
         <h3 class="card-title">Proof Reading</h3>
         <p class="card-body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure harum similique corporis?</p>
-        <button>learn more</button>
+      <button class="btn">Learn More</button>
       </div>
     </div>
     <div id="support">
-      <h3>Need help?</h3>
+      <h2 class="center">Need help?</h2>
       <div class="contacts">
         <p>Phone: 0712 345 678</p>
         <p>WhatsApp: 0712 345 678</p>
         <p>Email: help@iwriterpro.com</p>
       </div>
       <div class="support-form">
-        <form action="#">
-    
+        <h3 class="center">Message Us</h3>
+        <form>
+          <div class="input-control">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+          </div>
+          <div class="input-control">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name">
+          </div>
+          <div class="input-control">
+            <label for="message">Message</label>
+            
+            <textarea name="message" id="message" rows="4">
+              </textarea>
+          </div>
+          <input type="submit" class='btn' value="Send Message">
         </form>
       </div>
     </div>
   </main>
+  <footer>
+    <p class="copyright center">
+      iWriter Pro &copy; 2021
+    </p>
+  </footer>
 
   <script src="js/base.js"></script>
 </body>
