@@ -135,7 +135,7 @@ main #welcome button {
 }
 
 main > div {
-  min-height: 100%;
+  min-height: 80vh;
   margin-top: 2em;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -149,6 +149,24 @@ main > div {
 
 .contacts {
   margin-bottom: 2em;
+}
+
+.contacts p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.contacts p a {
+  color: #673ab7;
+}
+
+.contacts p span {
+  margin-right: 0.5em;
+  color: #673ab7;
 }
 
 form {
@@ -200,8 +218,12 @@ footer {
     display: grid;
     -ms-grid-columns: 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr;
-    -ms-grid-rows: auto;
-        grid-template-rows: auto;
+    -ms-grid-rows: 70px auto;
+        grid-template-rows: 70px auto;
+  }
+  #services .card {
+    -ms-flex-item-align: start;
+        align-self: flex-start;
   }
   #services .title {
     grid-column: span 3;
@@ -211,11 +233,11 @@ footer {
     display: grid;
     -ms-grid-columns: repeat 2, 1fr;
         grid-template-columns: repeat 2, 1fr;
-    -ms-grid-rows: 100px auto;
-        grid-template-rows: 100px auto;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-grid-rows: 70px auto;
+        grid-template-rows: 70px auto;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
   }
   #support h2 {
     grid-column: span 2;
