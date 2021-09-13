@@ -1,0 +1,86 @@
+//Go to materialpalette.com for color design
+$primary-color: #673ab7;
+$primary-color-dark: #512da8;
+$accent-color: #009688;
+$text-color: #ffffff;
+$alt-text: #212121;
+$secondary-text: #757575;
+
+// Fonts
+$primary-font: 'Lato', sans-serif;
+$secondary-font: 'Raleway', sans-serif;
+
+$padding-sm: 0.5em;
+
+* {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+ font-family: $primary-font;
+ line-height: 1.75;
+}
+
+
+.App{
+  .hidden{
+    left: -270px;
+  }
+  header{
+    display: flex;
+    position: sticky;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5em;
+    background-color: $accent-color;
+    color: $text-color;
+    height: 60px;
+    span{
+      cursor: pointer;
+    }
+  }
+  aside{
+    height: calc(100vh - 60px);
+    width: 270px;
+    position: absolute;
+    background-color: $primary-color-dark;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    a{
+      color: $text-color;
+      text-decoration: none;
+    }
+  }
+  main{
+    height: calc(100vh - 60px);
+    overflow-y: scroll;
+    section{
+      min-height: 100%;
+    }
+  }
+  #welcome{
+    background-color: gold;
+    border: 1px solid palegoldenrod;
+    padding: 2em;
+    .text{
+      margin-top: 20%;
+      padding: 2em;
+      border: 1px solid black;
+    }
+    .form{
+      margin-top: 20%;
+      .input-group{
+        display: flex;
+      flex-direction: column;
+      }
+    }
+  }
+  #services{
+    background-color: hotpink;
+  }
+  #support{
+    background-color: gray;
+  }
+
+}
