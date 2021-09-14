@@ -1,11 +1,47 @@
 import "./App.css";
 import React from 'react';
-import {  Formik }from "formik";
+import {  useFormik }from "formik";
 
 function App() {
   const toggleHidden = () => {
     document.getElementById("main-nav").classList.toggle("hidden");
   };
+  const validate = (values) => {
+    const errors = {};
+    //Validate name
+    if (!values.name) {
+      errors.name = 'Your name is required';
+    } else if (values.name.length < 2) {
+      errors.name = 'Name must be more than 1 letter';
+    }
+
+    //Validate email
+    if (!values.email) {
+      errors.email = "Email is required";
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+    ) {
+      errors.email = "Invalid email address";
+    }
+
+
+    return errors
+  }
+  const formik = useFormik(
+    {
+      initialValues: {
+        name: "",
+        email: "",
+        attachment: "",
+        instructions: "",
+      },
+      validate,
+      onSubmit: (values) => {
+//Do something with values here
+        alert(JSON.stringify(values, null, 2));
+      },
+    }
+  );
 
   return (
     <div className="App">
@@ -43,73 +79,60 @@ function App() {
             </p>
           </div>
           <div className="form">
-            <Formik
-              initialValues={{ email: "", password: "" }}
-              validate={(values) => {
-                const errors = {};
-
-                if (!values.email) {
-                  errors.email = "Required";
-                } else if (
-                  !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                ) {
-                  errors.email = "Invalid email address";
-                }
-
-                return errors;
-              }}
-              onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                  alert(JSON.stringify(values, null, 2));
-
-                  setSubmitting(false);
-                }, 400);
-              }}
-            >
-              {({
-                values,
-
-                errors,
-
-                touched,
-
-                handleChange,
-
-                handleBlur,
-
-                handleSubmit,
-
-                isSubmitting,
-
-                /* and other goodies */
-              }) => (
-                <form onSubmit={handleSubmit}>
-                  <input
-                    type="email"
-                    name="email"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.email}
-                  />
-
-                  {errors.email && touched.email && errors.email}
-
-                  <input
-                    type="password"
-                    name="password"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.password}
-                  />
-
-                  {errors.password && touched.password && errors.password}
-
-                  <button type="submit" disabled={isSubmitting}>
-                    Submit
-                  </button>
-                </form>
-              )}
-            </Formik>
+            <form onSubmit={formik.handleSubmit}>
+              <div className="input-group">
+                <label htmlFor="name">Your name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.name}
+                />
+                {formik.touched.name && formik.errors.name ? (
+                  <span className="error-text">{formik.errors.name}</span>
+                ) : null}
+              </div>
+              <div className="input-group">
+                <label htmlFor="email">Your email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.email}
+                />
+                {formik.touched.email && formik.errors.email ? (
+                  <span className="error-text">{formik.errors.email}</span>
+                ) : null}
+              </div>
+              <div className="input-group">
+                <label htmlFor="attachment">Attach instructions</label>
+                <input
+                  type="text"
+                  id="attachment"
+                  name="attachment"
+                  onChange={formik.handleChange}
+                  value={formik.values.attachment}
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="instructions">
+                  Type/Paste instructions here
+                </label>
+                <input
+                  type="textarea"
+                  rows="5"
+                  id="instructions"
+                  name="instructions"
+                  onChange={formik.handleChange}
+                  value={formik.values.instructions}
+                />
+              </div>
+              <button type="submit">Submit</button>
+            </form>
           </div>
         </section>
         <section id="services"></section>
