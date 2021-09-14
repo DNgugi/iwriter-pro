@@ -11,6 +11,21 @@
   left: -270px;
 }
 
+.App .btn {
+  padding: 0.5em;
+  background-color: #512da8;
+  color: #ffffff;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 1em;
+}
+
+.App .btn:hover {
+  background-color: #ffffff;
+  color: #512da8;
+}
+
 .App header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -83,7 +98,11 @@
   margin-top: 20%;
 }
 
-.App #welcome .form .input-group {
+.App #welcome .form .error-text {
+  color: orangered;
+}
+
+.App #welcome .form form, .App #welcome .form .input-group {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

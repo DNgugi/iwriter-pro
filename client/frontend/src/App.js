@@ -39,6 +39,9 @@ function App() {
       onSubmit: (values) => {
 //Do something with values here
         alert(JSON.stringify(values, null, 2));
+        //call some api?
+        
+        formik.resetForm();
       },
     }
   );
@@ -100,6 +103,7 @@ function App() {
                   type="email"
                   id="email"
                   name="email"
+                  // autoComplete="off"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.email}
@@ -108,30 +112,31 @@ function App() {
                   <span className="error-text">{formik.errors.email}</span>
                 ) : null}
               </div>
+
               <div className="input-group">
-                <label htmlFor="attachment">Attach instructions</label>
+                <label htmlFor="instructions">
+                  Tell us about your project
+                </label>
+                <textarea
+                  id="instructions"
+                  name="instructions"
+                  rows={5}
+                  onChange={formik.handleChange}
+                  value={formik.values.instructions}
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="attachment">Or upload your instructions(.pdf, .doc, .docx)</label>
                 <input
-                  type="text"
+                  type="file"
+                  accept=".pdf, .docx, .doc"
                   id="attachment"
                   name="attachment"
                   onChange={formik.handleChange}
                   value={formik.values.attachment}
                 />
               </div>
-              <div className="input-group">
-                <label htmlFor="instructions">
-                  Type/Paste instructions here
-                </label>
-                <input
-                  type="textarea"
-                  rows="5"
-                  id="instructions"
-                  name="instructions"
-                  onChange={formik.handleChange}
-                  value={formik.values.instructions}
-                />
-              </div>
-              <button type="submit">Submit</button>
+              <button className="btn" type="submit">Submit</button>
             </form>
           </div>
         </section>
