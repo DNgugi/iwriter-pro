@@ -9,6 +9,8 @@
 
 .App .hidden {
   left: -270px;
+  -webkit-transition: ease-out 1s;
+  transition: ease-out 1s;
 }
 
 .App .btn {
@@ -21,9 +23,21 @@
   margin-top: 1em;
 }
 
-.App .btn:hover {
-  background-color: #ffffff;
-  color: #512da8;
+.App .card {
+  border: 1px solid #212121;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1em;
+  margin: 1em;
+}
+
+.App .center {
+  text-align: center;
 }
 
 .App header {
@@ -66,6 +80,8 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-transition: ease-in 1s;
+  transition: ease-in 1s;
 }
 
 .App aside a {
@@ -76,10 +92,13 @@
 .App main {
   height: calc(100vh - 60px);
   overflow-y: scroll;
+  -ms-scroll-snap-type: y mandatory;
+      scroll-snap-type: y mandatory;
 }
 
 .App main section {
   min-height: 100%;
+  scroll-snap-align: start;
 }
 
 .App #welcome {
@@ -113,10 +132,47 @@
 }
 
 .App #services {
-  background-color: hotpink;
+  padding-top: 2em;
 }
 
 .App #support {
-  background-color: gray;
+  background-color: #512da8;
+  color: #ffffff;
+  padding-top: 2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.App #support .card {
+  border-color: #ffffff;
+}
+
+.App #support .contacts p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.App #support .contacts p a {
+  color: #ffffff;
+}
+
+.App #support .contacts p span {
+  margin-right: 0.5em;
+}
+
+.App footer {
+  padding: 0.5em;
 }
 /*# sourceMappingURL=App.css.map */
