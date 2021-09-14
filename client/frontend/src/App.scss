@@ -25,6 +25,21 @@ $padding-sm: 0.5em;
   .hidden{
     left: -270px;
   }
+  .btn{
+    padding: 0.5em;
+    background-color: $primary-color-dark;
+    color: $text-color;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 1em;
+    
+  }
+  .btn:hover{
+      background-color: $text-color;
+      color: $primary-color-dark;
+      
+    }
   
   header{
     display: flex;
@@ -71,7 +86,15 @@ $padding-sm: 0.5em;
       border: 1px solid black;
     }
     .form{
-      margin-top: 20%;  
+      margin-top: 20%;
+      .error-text{
+        color: orangered;
+      }
+      form, .input-group{
+        display: flex;
+        flex-direction: column;
+        
+      }  
     }
   }
   #services{
