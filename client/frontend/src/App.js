@@ -1,6 +1,7 @@
 import "./App.css";
 import React from 'react';
-import {  useFormik }from "formik";
+import { useFormik } from "formik";
+import axios from "axios";
 
 function App() {
   const toggleHidden = () => {
@@ -38,9 +39,18 @@ function App() {
       validate,
       onSubmit: (values) => {
 //Do something with values here
-        alert(JSON.stringify(values, null, 2));
+        //alert(JSON.stringify(values, null, 2));
         //call some api?
-
+        //const orderFormData = new FormData();
+        // orderFormData.values = values;
+        // console.log(orderFormData);
+        axios({
+          method: "post",
+          url: "http://localhost:5000/orders",
+          data: values,
+          //headers: { "Content-Type": "multipart/form-data" },
+        }).then(res => alert(res.data)).catch(e => alert(e));
+        // axios.get('http://localhost:5000').then(response => alert(response.data)).catch(e => alert(e));
         formik.resetForm();
       },
     }
@@ -82,7 +92,7 @@ function App() {
             </p>
           </div>
           <div className="form">
-            <form onSubmit={formik.handleSubmit}>
+            <form id="order-form" name="order-form" onSubmit={formik.handleSubmit}>
               <div className="input-group">
                 <label htmlFor="name">Your name</label>
                 <input
