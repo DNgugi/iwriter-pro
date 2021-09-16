@@ -24,6 +24,8 @@ $padding-sm: 0.5em;
 .App{
   .hidden{
     left: -270px;
+    transition: ease-out 1s;
+
   }
   .btn{
     padding: 0.5em;
@@ -35,11 +37,16 @@ $padding-sm: 0.5em;
     margin-top: 1em;
     
   }
-  .btn:hover{
-      background-color: $text-color;
-      color: $primary-color-dark;
-      
-    }
+  .card{
+  border: 1px solid $alt-text;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  margin: 1em;
+}
+.center {
+  text-align: center;
+}
   
   header{
     display: flex;
@@ -63,6 +70,8 @@ $padding-sm: 0.5em;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    transition: ease-in 1s;
+
     a{
       color: $text-color;
       text-decoration: none;
@@ -71,8 +80,12 @@ $padding-sm: 0.5em;
   main{
     height: calc(100vh - 60px);
     overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+
     section{
       min-height: 100%;
+        scroll-snap-align: start;
+
     }
     
   }
@@ -98,10 +111,33 @@ $padding-sm: 0.5em;
     }
   }
   #services{
-    background-color: hotpink;
+    //background-color: hotpink;
+    padding-top: 2em;
   }
   #support{
-    background-color: gray;
+    background-color: $primary-color-dark;
+    color: $text-color;
+    padding-top: 2em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .card{
+      border-color: $text-color;
+    }
+    .contacts p{
+      display: flex;
+      align-items: center;
+      a{
+        color: $text-color;
+        
+      }
+      span{
+        margin-right: 0.5em;
+      }
+    }
+  }
+  footer{
+    padding: 0.5em;
   }
 
 }

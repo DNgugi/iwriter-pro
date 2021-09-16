@@ -1,6 +1,7 @@
 import "./App.css";
 import React from 'react';
-import {  useFormik }from "formik";
+import { useFormik } from "formik";
+import axios from "axios";
 
 function App() {
   const toggleHidden = () => {
@@ -38,9 +39,18 @@ function App() {
       validate,
       onSubmit: (values) => {
 //Do something with values here
-        alert(JSON.stringify(values, null, 2));
+        //alert(JSON.stringify(values, null, 2));
         //call some api?
-        
+        //const orderFormData = new FormData();
+        // orderFormData.values = values;
+        // console.log(orderFormData);
+        axios({
+          method: "post",
+          url: "http://localhost:5000/orders",
+          data: values,
+          //headers: { "Content-Type": "multipart/form-data" },
+        }).then(res => alert(res.data)).catch(e => alert(e));
+        // axios.get('http://localhost:5000').then(response => alert(response.data)).catch(e => alert(e));
         formik.resetForm();
       },
     }
@@ -64,13 +74,13 @@ function App() {
         <a href="#support" onClick={toggleHidden}>
           Support{" "}
         </a>
-        <a
+        {/* <a
           href="https://teambidii.co.ke"
           target="_blank"
           onClick={toggleHidden}
         >
           Log In
-        </a>
+        </a> */}
       </aside>
       <main>
         <section id="welcome">
@@ -82,7 +92,7 @@ function App() {
             </p>
           </div>
           <div className="form">
-            <form onSubmit={formik.handleSubmit}>
+            <form id="order-form" name="order-form" onSubmit={formik.handleSubmit}>
               <div className="input-group">
                 <label htmlFor="name">Your name</label>
                 <input
@@ -114,9 +124,7 @@ function App() {
               </div>
 
               <div className="input-group">
-                <label htmlFor="instructions">
-                  Tell us about your project
-                </label>
+                <label htmlFor="instructions">Tell us about your project</label>
                 <textarea
                   id="instructions"
                   name="instructions"
@@ -126,7 +134,9 @@ function App() {
                 />
               </div>
               <div className="input-group">
-                <label htmlFor="attachment">Or upload your instructions(.pdf, .doc, .docx)</label>
+                <label htmlFor="attachment">
+                  Or upload your instructions(.pdf, .doc, .docx)
+                </label>
                 <input
                   type="file"
                   accept=".pdf, .docx, .doc"
@@ -136,15 +146,60 @@ function App() {
                   value={formik.values.attachment}
                 />
               </div>
-              <button className="btn" type="submit">Submit</button>
+              <button className="btn" type="submit">
+                Submit
+              </button>
             </form>
           </div>
         </section>
-        <section id="services"></section>
-        <section id="support"></section>
+        <section id="services">
+          <h2 className="title center">Our Services</h2>
+          <div className="card one">
+            <h3 className="card-title">Academic Writing</h3>
+            <p className="card-body">
+              We have over 5 years experience writing academic papers that
+              exceed your expectations in quality
+            </p>
+          </div>
+          <div className="card two">
+            <h3 className="card-title">Research</h3>
+            <p className="card-body">
+              Struggling with research and data analysis on your project? We use
+              modern approaches and tools to help you get great results
+            </p>
+          </div>
+
+          <div className="card three">
+            <h3 className="card-title">Proof Reading</h3>
+            <p className="card-body">
+              A fresh pair of eyes goes a long way in producing excellent
+              writing. Our editors are experienced and will help you clarify and
+              improve your work.
+            </p>
+          </div>
+        </section>
+        <section id="support">
+          <div className="card">
+            <h2>Need help?</h2>
+            Call or WhatsApp us on the numbers below or shoot us an email. We are ready to help!
+          </div>
+          <div class="contacts">
+            <p>
+              <span class="material-icons">phone</span> 0716585138
+            </p>
+            <p>
+              <span class="material-icons">whatsapp</span>{" "}
+              <a href="https://wa.me/254716585138">0716585138</a>
+            </p>
+            <p>
+              <span class="material-icons">email</span>{" "}
+              <a href="mailto:help@iwriterpro.com">help@iwriterpro.com</a>
+            </p>
+          </div>
+        </section>
       </main>
       <footer>
-        <p>Footer</p>
+        <p className="center">iWriter Pro &copy; { new Date().getFullYear()}. A <a href="https://teambidii.co.ke" target="_blank">Team Bidii Consulting</a> project.</p>
       </footer>
     </div>
   );

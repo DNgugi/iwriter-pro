@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import usersRouter from "./routes/users.js";
 import rolesRouter from "./routes/roles.js";
-
+import ordersRouter from "./routes/orders.js";
 const app = express();
 
 const PORT = process.env.PORT || 5000;
@@ -23,6 +23,7 @@ app.get("/", (req, res) => {
 
 app.use("/users", usersRouter);
 app.use("/roles", rolesRouter);
+app.use("/orders", ordersRouter);
 
 app.listen(PORT, () =>
   console.log(`Server listening on: http://localhost:${PORT}`)
