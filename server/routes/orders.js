@@ -2,7 +2,7 @@ import express from "express";
 import multer from "multer";
 import path from 'path';
 // const upload = multer({ dest: 'uploads/' });
-//import { pool } from "../iwriterprodb.js";
+import { pool } from "../iwriterprodb.js";
 
 const router = express.Router();
 const storage = multer.diskStorage({
@@ -20,10 +20,10 @@ router.post("/", upload.single('attachment'), async (req, res) => {
   try {
     const { name, email, instructions } = req.body;
 
-    // await pool.query(
-    //   "INSERT INTO roles (role_id,role_name,assigned_to) VALUES ($1, $2, $3) RETURNING *",
-    //   [role_id, role_name, assigned_to]
-    // );
+    await pool.query(
+      "INSERT INTO orders (name, email, instructions, attachment) VALUES ($1, $2, $3, $4) RETURNING *",
+      [name, email, instructions, req.file.path]
+    );
     res.json('Thank you for your request, we will be in touch shortly!');
     console.log(req.body, req.file);
   } catch (error) {

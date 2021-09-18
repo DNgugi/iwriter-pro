@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-import usersRouter from "./routes/users.js";
-import rolesRouter from "./routes/roles.js";
+// import usersRouter from "./routes/users.js";
+// import rolesRouter from "./routes/roles.js";
 import ordersRouter from "./routes/orders.js";
 const app = express();
 
@@ -22,8 +22,8 @@ app.get("/", (req, res) => {
   }
 });
 
-app.use("/users", usersRouter);
-app.use("/roles", rolesRouter);
+// app.use("/users", usersRouter);
+// app.use("/roles", rolesRouter);
 app.use("/orders", ordersRouter);
 
 app.listen(PORT, () =>
