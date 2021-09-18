@@ -1,19 +1,29 @@
 import "./App.css";
 import React from 'react';
-import { useFormik } from "formik";
+import { Formik, Form } from "formik";
 import axios from "axios";
 
 function App() {
   const toggleHidden = () => {
     document.getElementById("main-nav").classList.toggle("hidden");
   };
+
+  const handleSubmit = (values) => {
+    alert(JSON.stringify(values, null, 2));
+    console.log(values);
+    // let data = new FormData();
+    // data.append('attachment', values.attachment);
+    // // alert(data);
+    // console.log(data);
+  };
+
   const validate = (values) => {
     const errors = {};
     //Validate name
     if (!values.name) {
-      errors.name = 'Your name is required';
+      errors.name = "Your name is required";
     } else if (values.name.length < 2) {
-      errors.name = 'Name must be more than 1 letter';
+      errors.name = "Name must be more than 1 letter";
     }
 
     //Validate email
@@ -25,36 +35,26 @@ function App() {
       errors.email = "Invalid email address";
     }
 
+    return errors;
+  };
+  // const formik = useFormik(
+  //   {
+  //     initialValues: {
+  //       name: "",
+  //       email: "",
+  //       attachment: "",
+  //       instructions: "",
+  //     },
+  //     validate,
+  //     onSubmit: (values) => {
+  //       alert(JSON.stringify(values, null, 2));
 
-    return errors
-  }
-  const formik = useFormik(
-    {
-      initialValues: {
-        name: "",
-        email: "",
-        attachment: "",
-        instructions: "",
-      },
-      validate,
-      onSubmit: (values) => {
-//Do something with values here
-        //alert(JSON.stringify(values, null, 2));
-        //call some api?
-        //const orderFormData = new FormData();
-        // orderFormData.values = values;
-        // console.log(orderFormData);
-        axios({
-          method: "post",
-          url: "http://localhost:5000/orders",
-          data: values,
-          //headers: { "Content-Type": "multipart/form-data" },
-        }).then(res => alert(res.data)).catch(e => alert(e));
-        // axios.get('http://localhost:5000').then(response => alert(response.data)).catch(e => alert(e));
-        formik.resetForm();
-      },
-    }
-  );
+  //       console.log(values.attachment);
+
+  //       formik.resetForm();
+  //     },
+  //   }
+  // );
 
   return (
     <div className="App">
@@ -92,64 +92,114 @@ function App() {
             </p>
           </div>
           <div className="form">
-            <form id="order-form" name="order-form" onSubmit={formik.handleSubmit}>
-              <div className="input-group">
-                <label htmlFor="name">Your name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.name}
-                />
-                {formik.touched.name && formik.errors.name ? (
-                  <span className="error-text">{formik.errors.name}</span>
-                ) : null}
-              </div>
-              <div className="input-group">
-                <label htmlFor="email">Your email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  // autoComplete="off"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.email}
-                />
-                {formik.touched.email && formik.errors.email ? (
-                  <span className="error-text">{formik.errors.email}</span>
-                ) : null}
-              </div>
+            <Formik
+              initialValues={{
+                name: "",
+                email: "",
+                attachment: "",
+                instructions: "",
+              }}
+              validate={validate}
+              onSubmit={(values, formProps) => {
+                // console.log(values.attachment);
+                let data = new FormData();
+                data.append("attachment", values.attachment);
+                data.append("name", values.name);
+                data.append("email", values.email);
+                data.append("instructions", values.instructions);
 
-              <div className="input-group">
-                <label htmlFor="instructions">Tell us about your project</label>
-                <textarea
-                  id="instructions"
-                  name="instructions"
-                  rows={5}
-                  onChange={formik.handleChange}
-                  value={formik.values.instructions}
-                />
-              </div>
-              <div className="input-group">
-                <label htmlFor="attachment">
-                  Or upload your instructions(.pdf, .doc, .docx)
-                </label>
-                <input
-                  type="file"
-                  accept=".pdf, .docx, .doc"
-                  id="attachment"
-                  name="attachment"
-                  onChange={formik.handleChange}
-                  value={formik.values.attachment}
-                />
-              </div>
-              <button className="btn" type="submit">
-                Submit
-              </button>
-            </form>
+                // fetch('http://localhost:5000/orders', { method: 'post', headers: new Headers({ Accept: 'application/json' }), body: data }).then(res => res.json()).then(data => console.log(data)).catch(e => console.log(e));
+                axios
+                  .post("http://localhost:5000/orders", data, {
+                    headers: { "Content-Type": "multipart/form-data" },
+                  })
+                  .then((res) => alert(res.data))
+                  .catch((e) => console.log(e));
+                formProps.resetForm();
+              }}
+            >
+              {(formProps) => (
+                <Form>
+                  <div className="input-group">
+                    <label htmlFor="name">Your name</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      onChange={formProps.handleChange}
+                      onBlur={formProps.handleBlur}
+                      value={formProps.values.name}
+                    />
+                    {formProps.touched.name && formProps.errors.name ? (
+                      <span className="error-text">
+                        {formProps.errors.name}
+                      </span>
+                    ) : null}
+                  </div>
+                  <div className="input-group">
+                    <label htmlFor="email">Your email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      // autoComplete="off"
+                      onChange={formProps.handleChange}
+                      onBlur={formProps.handleBlur}
+                      value={formProps.values.email}
+                    />
+                    {formProps.touched.email && formProps.errors.email ? (
+                      <span className="error-text">
+                        {formProps.errors.email}
+                      </span>
+                    ) : null}
+                  </div>
+
+                  <div className="input-group">
+                    <label htmlFor="instructions">
+                      Tell us about your project
+                    </label>
+                    <textarea
+                      id="instructions"
+                      name="instructions"
+                      rows={5}
+                      onChange={formProps.handleChange}
+                      value={formProps.values.instructions}
+                    />
+                  </div>
+                  <div className="input-group">
+                    <label htmlFor="attachment">
+                      Or upload your instructions(.pdf, .doc, .docx)
+                    </label>
+                    <input
+                      type="file"
+                      accept=".pdf, .docx, .doc"
+                      //id="attachment"
+                      name="attachment"
+                      onChange={(event) => {
+                        formProps.setFieldValue(
+                          "attachment",
+                          event.target.files[0]
+                        );
+                      }}
+                    />
+                  </div>
+
+                  {/* <input
+                    type="file"
+                    name="attachment"
+                    onChange={(event) => {
+                      formProps.setFieldValue(
+                        "attachment",
+                        event.target.files[0]
+                      );
+                    }}
+                  /> */}
+                  <button className="btn" type="submit">
+                    Submit
+                  </button>
+                </Form>
+              )}
+            </Formik>
           </div>
         </section>
         <section id="services">
@@ -181,7 +231,8 @@ function App() {
         <section id="support">
           <div className="card">
             <h2>Need help?</h2>
-            Call or WhatsApp us on the numbers below or shoot us an email. We are ready to help!
+            Call or WhatsApp us on the numbers below or shoot us an email. We
+            are ready to help!
           </div>
           <div class="contacts">
             <p>
@@ -199,7 +250,13 @@ function App() {
         </section>
       </main>
       <footer>
-        <p className="center">iWriter Pro &copy; { new Date().getFullYear()}. A <a href="https://teambidii.co.ke" target="_blank">Team Bidii Consulting</a> project.</p>
+        <p className="center">
+          iWriter Pro &copy; {new Date().getFullYear()}. A{" "}
+          <a href="https://teambidii.co.ke" target="_blank">
+            Team Bidii Consulting
+          </a>{" "}
+          project.
+        </p>
       </footer>
     </div>
   );

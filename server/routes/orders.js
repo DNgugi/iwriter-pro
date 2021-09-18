@@ -1,21 +1,31 @@
 import express from "express";
-import { pool } from "../iwriterprodb.js";
+import multer from "multer";
+import path from 'path';
+// const upload = multer({ dest: 'uploads/' });
+//import { pool } from "../iwriterprodb.js";
 
 const router = express.Router();
-
+const storage = multer.diskStorage({
+  destination: './public/uploads/',
+  
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+  }
+}
+);
+const upload = multer({ storage: storage });
 //ROLES TABLE ROUTES
 //Create
-router.post("/", async (req, res) => {
+router.post("/", upload.single('attachment'), async (req, res) => {
   try {
-    //const { name, email, attachment, instructions } = req.body;
+    const { name, email, instructions } = req.body;
 
     // await pool.query(
     //   "INSERT INTO roles (role_id,role_name,assigned_to) VALUES ($1, $2, $3) RETURNING *",
     //   [role_id, role_name, assigned_to]
     // );
-    console.log(req.body);
-
-    res.json("New order added successfully!" );
+    res.json('Thank you for your request, we will be in touch shortly!');
+    console.log(req.body, req.file);
   } catch (error) {
     console.error(error.message);
   }
