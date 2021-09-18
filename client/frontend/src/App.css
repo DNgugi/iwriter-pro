@@ -44,8 +44,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  position: -webkit-sticky;
-  position: sticky;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -107,12 +105,7 @@
 
 .App #welcome .text {
   margin-top: 20%;
-  padding: 2em;
-  border: 1px solid black;
-}
-
-.App #welcome .form {
-  margin-top: 20%;
+  padding: 1em;
 }
 
 .App #welcome .form .error-text {
@@ -172,5 +165,30 @@
 
 .App footer {
   padding: 0.5em;
+}
+
+@media screen and (min-width: 768px) {
+  .App #welcome {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+    gap: 2em;
+  }
+  .App #services {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+    -ms-grid-rows: 70px auto;
+        grid-template-rows: 70px auto;
+  }
+  .App #services .card {
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+  }
+  .App #services .title {
+    grid-column: span 3;
+  }
 }
 /*# sourceMappingURL=App.css.map */
