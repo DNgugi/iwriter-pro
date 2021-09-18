@@ -80,7 +80,7 @@ $padding-sm: 0.5em;
   main{
     height: calc(100vh - 60px);
     overflow-y: scroll;
-    scroll-snap-type: y mandatory;
+    //scroll-snap-type: y mandatory;
 
     section{
       min-height: 100%;
