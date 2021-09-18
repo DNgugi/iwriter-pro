@@ -50,7 +50,7 @@ $padding-sm: 0.5em;
   
   header{
     display: flex;
-    position: sticky;
+ //   position: sticky;
     align-items: center;
     justify-content: space-between;
     padding: 0.5em;
@@ -75,6 +75,7 @@ $padding-sm: 0.5em;
     a{
       color: $text-color;
       text-decoration: none;
+      
     }
   }
   main{
@@ -95,11 +96,11 @@ $padding-sm: 0.5em;
     padding: 2em;
     .text{
       margin-top: 20%;
-      padding: 2em;
-      border: 1px solid black;
+      padding: 1em;
+      //border: 1px solid black;
     }
     .form{
-      margin-top: 20%;
+      //margin-top: 10%;
       .error-text{
         color: orangered;
       }
@@ -111,7 +112,6 @@ $padding-sm: 0.5em;
     }
   }
   #services{
-    //background-color: hotpink;
     padding-top: 2em;
   }
   #support{
@@ -139,5 +139,28 @@ $padding-sm: 0.5em;
   footer{
     padding: 0.5em;
   }
+
+  @media screen and (min-width: 768px) {
+ 
+#welcome{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2em;
+  
+}
+#services{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 70px auto;
+  .card{
+    align-self: flex-start;
+  }
+  .title{
+    grid-column: span 3;
+  }
+}
+
+}
+
 
 }
