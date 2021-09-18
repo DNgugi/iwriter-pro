@@ -1,4 +1,4 @@
-# iwriter-pro
-A PERN stack engine for a writing company
+# iWriter Pro
 
-[Visit the live project](https://iwriterPro.com "iWriterPro's Homepage")
+See the [live project](https://iwriterpro.com)
+Design & Build by [Team Bidii Consulting](https://teambidii.co.ke)
