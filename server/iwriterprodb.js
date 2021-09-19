@@ -1,11 +1,12 @@
-import pkg from 'pg';
+const pkg = require('pg');
 const { Pool } = pkg;
 
-export const pool = new Pool({
-  user: "iwriteradmin",
+const pool = new Pool({
+  user: "iwriterp_iwriteradmin",
   password: "iwriteradmin",
   host: "localhost",
   port: 5432,
-  database: "iwriterpro"
+  database: "iwriterp_iwriterpro"
 });
 
+module.exports = pool

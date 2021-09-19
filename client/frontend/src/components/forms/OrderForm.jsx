@@ -28,20 +28,23 @@ const OrderForm = () => {
   
   const handleSubmit = (values, formProps) => {
     let data = new FormData();
+    
     data.append("attachment", values.attachment);
-    data.append("name", values.name);
+    data.set("name", values.name);
     data.append("email", values.email);
     data.append("instructions", values.instructions);
+        console.log(data);
+    const config = {
+      headers: { "Content-Type": "multipart/form-data" },
+    };
 
     axios
-      .post("https://server.iwriterpro.com/orders", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then((res) => alert(res.data))
+      .post("http://server.iwriterpro.com/orders", data, config)
+      .then((res) => console.log(res.data))
       .catch((e) => console.log(e));
     formProps.resetForm();
   };
- 
+//  FMA]AhKAykcf
   return (
     <Formik
       initialValues={{

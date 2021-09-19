@@ -1,8 +1,9 @@
-import express from "express";
-import multer from "multer";
-import path from 'path';
+const express = require('express');
+const multer = require('multer');
+const path = require('path');
+
 // const upload = multer({ dest: 'uploads/' });
-import { pool } from "../iwriterprodb.js";
+const pool = require("../iwriterprodb.js");
 
 const router = express.Router();
 const storage = multer.diskStorage({
@@ -24,7 +25,7 @@ router.post("/", upload.single('attachment'), async (req, res) => {
       "INSERT INTO orders (name, email, instructions, attachment) VALUES ($1, $2, $3, $4) RETURNING *",
       [name, email, instructions, req.file.path]
     );
-    res.json('Thank you for your request, we will be in touch shortly!');
+    res.json("Thank you for your request, we will be in touch shortly!");
     console.log(req.body, req.file);
   } catch (error) {
     console.error(error.message);
@@ -81,4 +82,4 @@ router.post("/", upload.single('attachment'), async (req, res) => {
 //   }
 // });
 
-export default router;
+module.exports = router;

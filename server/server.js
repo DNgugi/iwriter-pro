@@ -1,11 +1,11 @@
-import express from "express";
-import cors from "cors";
+const express = require( "express");
+const cors = require( "cors");
 // import usersRouter from "./routes/users.js";
 // import rolesRouter from "./routes/roles.js";
-import ordersRouter from "./routes/orders.js";
+const ordersRouter = require("./routes/orders.js");
 const app = express();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 
 //Middleware
 app.use(cors());
@@ -16,7 +16,7 @@ app.use(express.static('./public/uploads'))
 
 app.get("/", (req, res) => {
   try {
-    res.json("iWriterPro API homepage");
+    res.json("Server is up, iWriter Pro API is ready");
   } catch (error) {
     console.error(error.message);
   }

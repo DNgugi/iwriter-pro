@@ -3,14 +3,10 @@
   "version": "1.0.0",
   "description": "Node/Express server for iWriterPro ",
   "main": "server.js",
-  "type": "module",
-  "scripts": {
-    "start": "nodemon server.js"
-  },
   "author": "Team Bidii Consulting",
   "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^2.0.7"
+  "scripts": {
+    "start": "node server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
