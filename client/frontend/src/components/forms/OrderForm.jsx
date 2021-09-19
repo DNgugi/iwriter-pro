@@ -34,7 +34,7 @@ const OrderForm = () => {
     data.append("instructions", values.instructions);
 
     axios
-      .post("http://localhost:5000/orders", data, {
+      .post("https://server.iwriterpro.com/orders", data, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((res) => alert(res.data))
