@@ -33,15 +33,13 @@ const OrderForm = () => {
     data.set("name", values.name);
     data.append("email", values.email);
     data.append("instructions", values.instructions);
-        console.log(data);
-    const config = {
-      headers: { "Content-Type": "multipart/form-data" },
-    };
-
+    
     axios
-      .post("http://server.iwriterpro.com/orders", data, config)
-      .then((res) => console.log(res.data))
-      .catch((e) => console.log(e));
+      .post("http://server.iwriterpro.com:5000/orders", data, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((res) => alert(res.data))
+      .catch((e) => alert(e));
     formProps.resetForm();
   };
 //  FMA]AhKAykcf
